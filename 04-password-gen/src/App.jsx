@@ -1,11 +1,14 @@
 
 import { useState } from 'react'
-import './App.css'
+
 import { useCallback } from 'react'
 import { useEffect } from 'react'
+import { useRef } from 'react'
 
 function App() {
-  
+const passRef=useRef(null)  
+
+const [isVisible,setIsVisible]=useState(false)
 const [length,setLength]=useState(8)
 const [numberAllowed, setNumberAllowed] = useState(false)
 const [charAllowed, setCharAllowed] = useState(false)
@@ -29,13 +32,28 @@ const passwordGenerator = useCallback(()=>{
   setPassword(pass)
 },[length,numberAllowed,charAllowed,setPassword])
 
+const copyPasswordToClipboard=useCallback(()=>{
+  passRef.current?.select()
+  window.navigator.clipboard.writeText(password)
+  showAndFadeOutMessage()
+},[password])
+
+const showAndFadeOutMessage = () => {
+  setIsVisible(true);
+  setTimeout(() => {
+    setIsVisible(false);
+  }, 1000); // Adjust the delay as needed
+};
+
 useEffect(()=>{
   passwordGenerator()
+ 
 
 },[length,numberAllowed,charAllowed])
   return (
-    <div className="flex justify-center w-full ">
-    <div className=" bg-blue-950 shadow-md p-4 m-4 rounded-md">
+    <div className="h-screen w-full bg-gradient-to-r from-blue-500 to-blue-600">
+    <div className=" flex justify-center ">
+    <div className=" bg-gradient-to-r from-indigo-950 to-cyan-900 shadow-md p-4 m-4 rounded-md">
         <h1
         className='text-xl font-bold text-white'
         >Password Generator</h1>
@@ -46,9 +64,11 @@ useEffect(()=>{
           placeholder='password'
           value={password}
           readOnly
+          ref={passRef}
 
           />
           <button
+          onClick={copyPasswordToClipboard}
           className='bg-white rounded-md mr-1 p-2'
           
           >copy</button>
@@ -93,6 +113,15 @@ useEffect(()=>{
             <label  >Char</label>
            </div>
         </div>
+        <div
+      className={`${
+        isVisible ? 'opacity-100 text-white' : 'opacity-0 text-white'
+      } transition-opacity duration-500 `}
+    >
+      Text has been copied!
+    </div>
+    </div>
+
     </div>
 </div>
 
