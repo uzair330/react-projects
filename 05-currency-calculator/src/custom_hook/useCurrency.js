@@ -49,6 +49,7 @@ import {useEffect, useState} from "react"
 function useCurrencyInfo(currency){
     const [data, setData] = useState({})
     useEffect(() => {
+        // const url = `https://api.currencyapi.com/v3/latest?apikey=cur_live_ockIu3QKolfOneefIcJQ7EuV4X1r34PNDogVz56o&currencies=${currencies}&base_currency=${base_currency}
         fetch(`https://api.currencyapi.com/v3/latest?apikey=cur_live_ockIu3QKolfOneefIcJQ7EuV4X1r34PNDogVz56o&currencies=${currency}`)
         // .then((res) => res.json())
         .then((res) => setData(res[currency].value))
