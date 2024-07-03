@@ -6,6 +6,7 @@ import App from './App'
 import Home from './components/HOME/Home'
 import About from './components/HOME/About/about'
 import Contact from './Contact/Contact'
+import User from './components/User/User'
 // const router = createBrowserRouter([
 //   {
 //     path:"/",
@@ -35,6 +36,8 @@ const router = createBrowserRouter(
 <Route path={""} element={<Home/>}/>
 <Route path={"/about"} element={<About/>}/>
 <Route path={"/contact"} element={<Contact/>}/>
+<Route path={"user/:userid"} element={<User/>}/>
+
 
     </Route>
   )
