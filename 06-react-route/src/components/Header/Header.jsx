@@ -1,5 +1,7 @@
 import React from 'react'
 import {Link,NavLink} from 'react-router-dom'
+import logo from '../../assets/logo.png'
+
 export default function Header() {
     return (
         <header className="shadow sticky z-50 top-0">
@@ -11,6 +13,12 @@ export default function Header() {
                             className="mr-3 h-12"
                             alt="Logo"
                         />
+                            {/* <img
+                            src={logo}
+                            className="mr-3 "
+                            alt="Logo"
+                        />
+                        <div className="">Young Leaders Parliament(YLP)</div> */}
                     </Link>
                     <div className="flex items-center lg:order-2">
                         <Link
