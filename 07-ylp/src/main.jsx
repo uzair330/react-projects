@@ -4,7 +4,7 @@ import './index.css'
 import {RouterProvider,createBrowserRouter,Route,createRoutesFromElements} from "react-router-dom"
 import App from './App'
 import Home from './components/HOME/Home'
-import About from './components/HOME/About/about'
+import About from './components/About/about'
 import Contact from './Contact/Contact'
 import User from './components/User/User'
 // const router = createBrowserRouter([
