@@ -13,9 +13,31 @@ const addTodo = (todo)=>{
 const updateTodo= (todo)=>{
   setTodos((prev)=>prev.map((prevTodo)=>(prevTodo.id === id ? todo:prevTodo )))
 }
+
+const deleteTodo = (id)=>{
+ setTodos((prev)=>prev.filter((prevTodo)=>prevTodo.id !== id))
+}
+
+const toggleComplete =(id)=>{
+    setTodos((prev)=>prev.map((prevTodo)=>prevTodo.id == id? {...prevTodo,completed:!prevTodo.completed}:prevTodo))
+}
+
+useEffect(() => {
+const todos=JSON.parse(localStorage.getItem("todos"))
+
+if(todos && todos.length>0){
+setTodos(todos)
+}
+}, [])
+
+
+useEffect(() => {
+localStorage.setItem("todos",JSON.stringify(todos))
+}, [todos])
+
   return (
     <TodoProvider 
-    value={{todo,addTodo,updateTodo,deleteTodo,toggleComplete}}
+    value={{todos,addTodo,updateTodo,deleteTodo,toggleComplete}}
     >
     <div className="bg-[#172842] min-h-screen py-8">
     <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
