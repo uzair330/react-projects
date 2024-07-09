@@ -1,17 +1,15 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { addTodo } from '../feathures/todo/todoSlice'
-import { useState } from 'react'
 
 const AddTodo = () => {
-    const [input, setInput] = useState("")
+    const [input, setInput] = React.useState("")
     const dispatch = useDispatch()
 
     const addTodoHandler = (e) =>{
         // Event preventDefault() method
         e.preventDefault()
         dispatch(addTodo(input))
-        setInput("")
         }
   return (
     <form onSubmit={addTodoHandler} className="space-x-3 mt-12">
