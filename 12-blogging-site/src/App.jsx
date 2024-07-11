@@ -1,8 +1,14 @@
-
+import { useDispatch } from 'react-redux'
+import authService from "./appWrite/auth"
 import './App.css'
 
 function App() {
- console.log(import.meta.env.VITE_APPWRITE_URL);
+ const [loading, setLoading] = useState(true)
+
+ const dispatch = useDispatch()
+useEffect(() => {
+authService.getUser()
+}, [input])
 
   return (
     <div className="text-7xl font-bold">
